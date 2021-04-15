@@ -30,5 +30,11 @@ public class PlateEntity {
         this.number = number;
     }
 
-
+    @Override
+    public String toString() {
+        return "PlateEntity{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                '}';
+    }
 }
