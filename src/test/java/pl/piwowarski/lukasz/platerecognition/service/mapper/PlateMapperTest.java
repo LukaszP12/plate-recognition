@@ -2,7 +2,7 @@ package pl.piwowarski.lukasz.platerecognition.service.mapper;
 
 import org.junit.jupiter.api.Test;
 import pl.piwowarski.lukasz.platerecognition.repository.entity.PlateEntity;
-import pl.piwowarski.lukasz.platerecognition.web.model.PlateModel;
+import pl.piwowarski.lukasz.platerecognition.web.model.RegistrationPlateModel;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,11 +13,11 @@ class PlateMapperTest {
 
         // given
         PlateMapper plateMapper = new PlateMapper();
-        PlateModel plateModel = new PlateModel();
-        plateModel.setId(1L);
+        RegistrationPlateModel registrationPlateModel = new RegistrationPlateModel();
+        registrationPlateModel.setId(1L);
 
         // when
-        PlateEntity plateEntity = plateMapper.from(plateModel);
+        PlateEntity plateEntity = plateMapper.from(registrationPlateModel);
 
         // then
         assertNotNull(plateEntity,"plateEntity is null");
@@ -32,11 +32,11 @@ class PlateMapperTest {
         plateEntity.setId(1L);
 
         //when
-        PlateModel plateModel = plateMapper.from(plateEntity);
+        RegistrationPlateModel registrationPlateModel = plateMapper.from(plateEntity);
 
         //then
-        assertNotNull(plateModel,"plateModel is null");
-        assertNotNull(plateModel.getId(),"plateModel is null");
+        assertNotNull(registrationPlateModel,"plateModel is null");
+        assertNotNull(registrationPlateModel.getId(),"plateModel is null");
     }
 
 }

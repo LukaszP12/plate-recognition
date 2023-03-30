@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class VehicleModel {
 
-    private PlateModel plate;
+    private RegistrationPlateModel plate;
 
 
 }

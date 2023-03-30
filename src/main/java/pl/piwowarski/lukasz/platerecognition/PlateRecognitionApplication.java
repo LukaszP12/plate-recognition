@@ -10,5 +10,4 @@ public class PlateRecognitionApplication {
 		SpringApplication.run(PlateRecognitionApplication.class, args);
 	}
 
-
 }

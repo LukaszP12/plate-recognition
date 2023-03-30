@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlateModel {
+public class RegistrationPlateModel {
 
     private Long id;
     private String number;
