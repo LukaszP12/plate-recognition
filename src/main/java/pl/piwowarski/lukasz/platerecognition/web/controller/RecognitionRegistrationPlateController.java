@@ -1,5 +1,6 @@
 package pl.piwowarski.lukasz.platerecognition.web.controller;
 
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,8 @@ public class RecognitionRegistrationPlateController {
     @PostMapping
     public RegistrationPlateModel recognize(MultipartFile upload) {
         LOGGER.info("recognize()");
+        Resource resource = upload.getResource();
+        LOGGER.info("upload resource: " + resource);
         return null;
     }
 }
