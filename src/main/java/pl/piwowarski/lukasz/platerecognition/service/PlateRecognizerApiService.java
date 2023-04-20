@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import pl.piwowarski.lukasz.platerecognition.service.platerecognizer.model.PlateRecognizerResponse;
 
 import java.util.logging.Logger;
 
@@ -17,7 +18,7 @@ public class PlateRecognizerApiService {
 
     private static final Logger LOGGER = Logger.getLogger(PlateRecognizerApiService.class.getName());
 
-    public String recognize(Resource resource) {
+    public PlateRecognizerResponse recognize(Resource resource) {
         LOGGER.info("recognize()");
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
@@ -30,7 +31,10 @@ public class PlateRecognizerApiService {
         String serverUrl = "https://api.platerecognizer.com/v1/plate-reader/";
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity(serverUrl, requestEntity, String.class);
+        ResponseEntity<PlateRecognizerResponse> responseEntity = restTemplate.postForEntity(
+                serverUrl,
+                requestEntity,
+                PlateRecognizerResponse.class);
 
         LOGGER.info("recognize()=" + responseEntity);
         return responseEntity.getBody();

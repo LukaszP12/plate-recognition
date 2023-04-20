@@ -3,8 +3,11 @@ package pl.piwowarski.lukasz.platerecognition.service.mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 import pl.piwowarski.lukasz.platerecognition.repository.entity.PlateEntity;
+import pl.piwowarski.lukasz.platerecognition.service.platerecognizer.model.PlateRecognizerResponse;
+import pl.piwowarski.lukasz.platerecognition.service.platerecognizer.model.Result;
 import pl.piwowarski.lukasz.platerecognition.web.model.RegistrationPlateModel;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Component
@@ -21,7 +24,7 @@ public class PlateMapper {
         return plateEntity;
     }
 
-    public RegistrationPlateModel from(PlateEntity plateEntity){
+    public RegistrationPlateModel from(PlateEntity plateEntity) {
         LOGGER.info("from(" + plateEntity + ")");
         ModelMapper modelMapper = new ModelMapper();
         RegistrationPlateModel registrationPlateModel = modelMapper.map(plateEntity, RegistrationPlateModel.class);
@@ -30,5 +33,23 @@ public class PlateMapper {
         return registrationPlateModel;
     }
 
+    public RegistrationPlateModel fromResponse(PlateRecognizerResponse plateRecognizerResponse) {
+        LOGGER.info("fromResponse(" + plateRecognizerResponse + ")");
+
+        RegistrationPlateModel registrationPlateModel = new RegistrationPlateModel();
+        if (plateRecognizerResponse != null) {
+            List<Result> results = plateRecognizerResponse.getResults();
+            if (results != null) {
+                Result result = results.get(0);
+                if (result != null) {
+                    String plate = result.getPlate();
+                    registrationPlateModel.setNumber(plate);
+                }
+            }
+        }
+
+        LOGGER.info("fromResponse(...)=" + registrationPlateModel);
+        return registrationPlateModel;
+    }
 
 }
