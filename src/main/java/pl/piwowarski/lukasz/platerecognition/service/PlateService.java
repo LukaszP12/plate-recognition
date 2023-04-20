@@ -34,8 +34,8 @@ public class PlateService {
         LOGGER.info("" + registrationPlateModel + "");
         PlateEntity plateEntity = plateMapper.from(registrationPlateModel);
         PlateEntity savedPlateEntity = plateRepository.save(plateEntity);
-//        plateMapper.from()
-        return null;
+        RegistrationPlateModel savedRegistrationPlateModel = plateMapper.from(savedPlateEntity);
+        return savedRegistrationPlateModel;
     }
 
     public RegistrationPlateModel read(Long id) throws Exception {

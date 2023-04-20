@@ -27,7 +27,7 @@ public class RecognitionRegistrationPlateController {
         Resource resource = upload.getResource();
         RegistrationPlateModel registrationPlateModel = recognitionRegistrationPlateService.recognize(resource);
 
-        LOGGER.info("upload resource: " + resource);
+        LOGGER.info("recognize()=" + registrationPlateModel);
         return registrationPlateModel;
     }
 }
