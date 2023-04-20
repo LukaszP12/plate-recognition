@@ -1,14 +1,15 @@
 package pl.piwowarski.lukasz.platerecognition.service;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import pl.piwowarski.lukasz.platerecognition.service.platerecognizer.model.PlateRecognizerResponse;
 
 import java.net.URLDecoder;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class PlateRecognizerApiServiceTest {
@@ -22,9 +23,10 @@ class PlateRecognizerApiServiceTest {
         Resource resource = new ClassPathResource(URLDecoder.decode("car_example_plate.jpg"));
 
         // when
-        plateRecognizerApiService.recognize(resource);
+        PlateRecognizerResponse plateRecognizerResponse = plateRecognizerApiService.recognize(resource);
 
         // then
+        Assertions.assertNotNull(plateRecognizerResponse, "response is null");
 
     }
 }
